@@ -4,7 +4,6 @@
 #include <imgui.h>
 
 #include "SDL_Handler/SDL_Handler.h"
-#include "Visualizer/Visualizer.h"
 
 class ImguiMenu {
 public:
@@ -22,5 +21,4 @@ public:
 
 private:
 	SDL_Handler* m_handler;
-	Visualizer* m_visualizer;
 };

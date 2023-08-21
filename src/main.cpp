@@ -1,7 +1,6 @@
 #include <iostream>
 #include <SDL.h>
 #include "SDL_Handler/SDL_Handler.h"
-#include "Visualizer/Visualizer.h"
 #include "ImguiMenu/ImguiMenu.h"
 
 
