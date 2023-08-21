@@ -16,7 +16,7 @@ bool SDL_Handler::Initalize() {
         return false;
     }
 
-    window = SDL_CreateWindow(
+    m_window = SDL_CreateWindow(
         "SDL2 TESTING",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
@@ -24,13 +24,13 @@ bool SDL_Handler::Initalize() {
         SDL_WINDOW_RESIZABLE
     );
 
-    if (!window)
+    if (!m_window)
     {
         std::cout << "Failed to create window\n";
         return false;
     }
 
-    renderer = SDL_CreateRenderer(window, -1, 0);
+    m_renderer = SDL_CreateRenderer(m_window, -1, 0);
 
     return true;
 }
@@ -38,17 +38,32 @@ bool SDL_Handler::Initalize() {
 
 
 void SDL_Handler::Destroy() {
-    SDL_DestroyWindow(window);
-    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(m_window);
+    SDL_DestroyRenderer(m_renderer);
     SDL_Quit();
 }
 
 int SDL_Handler::GetWindowHeight() {
-    return SDL_GetWindowSurface(window)->h;
+    return SDL_GetWindowSurface(m_window)->h;
 }
 
 int SDL_Handler::GetWindowWidth() {
-    return SDL_GetWindowSurface(window)->w;
+    return SDL_GetWindowSurface(m_window)->w;
+}
+
+SDL_Window* SDL_Handler::GetWindow()
+{
+    return m_window;
+}
+
+SDL_Renderer* SDL_Handler::GetRenderer()
+{
+    return m_renderer;
+}
+
+bool SDL_Handler::IsRunning()
+{
+    return m_isRunning;
 }
 
 void SDL_Handler::PollEvents() {
@@ -57,7 +72,7 @@ void SDL_Handler::PollEvents() {
         // Handle events here
         switch (event.type) {
         case SDL_QUIT:
-            isRunning = false;
+            m_isRunning = false;
             break;
         }
 

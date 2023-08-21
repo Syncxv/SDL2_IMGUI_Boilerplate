@@ -9,14 +9,16 @@ int main(int argc, char* argv[]) {
 	SDL_Handler handler;
 	ImguiMenu imguiMenu(&handler);
 
-	while (handler.isRunning) {
-		SDL_SetRenderDrawColor(handler.renderer, 0, 0, 0, 255);
-		SDL_RenderClear(handler.renderer);
+	SDL_Renderer* renderer = handler.GetRenderer();
+
+	while (handler.IsRunning()) {
+		SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+		SDL_RenderClear(renderer);
 
 		imguiMenu.Update();
 		handler.PollEvents();
 
-		SDL_RenderPresent(handler.renderer);
+		SDL_RenderPresent(renderer);
 	}
 
 	return 0;

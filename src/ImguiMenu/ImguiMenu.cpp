@@ -22,9 +22,12 @@ void ImguiMenu::Initalize() {
 	ImGui::StyleColorsDark();
 	//ImGui::StyleColorsLight();
 
+	SDL_Window* window = m_handler->GetWindow();
+	SDL_Renderer* renderer = m_handler->GetRenderer();
+
 	// Setup Platform/Renderer backends
-	ImGui_ImplSDL2_InitForSDLRenderer(m_handler->window, m_handler->renderer);
-	ImGui_ImplSDLRenderer2_Init(m_handler->renderer);
+	ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
+	ImGui_ImplSDLRenderer2_Init(renderer);
 
 	m_handler->RegisterCallBack(m_handler->CUSTOM_ALL, [this](SDL_Event& event) {
 		ImGui_ImplSDL2_ProcessEvent(&event);
